@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+<!--
+总结：1.想让vue工作需要创建一个vue实例，传入一个配置对象
+     2.root容器里的代码依然符合html规范，只不过混入了一些特殊的vue语法
+     3.root容器里的代码被称为【vue模板】
+-->
+<div class="root">
+    <p>hello,{{name}}</p> <!--这个会被解析-->
+    <a v-bind:href="url">点我去百度</a>
+</div>
+<div class="root">
+    <p>hello,{{name}}</p> <!--这个不会解析-->
+</div>
+<script type="text/javascript">
+    Vue.config.productionTip=false //阻止 vue 在启动时生成生产提示
+    //创建Vue实例
+    new Vue({ //容器和vue实例是一对一的，一个容器只能被一个vue实例接管，一个vue实例也只能接管一个容器
+        el:'.root', //告诉vue在哪个容器工作
+        //el:document.getElementById('root')  //这种写法也可，这种相当于我们手动直接找到送给vue
+        data:{ //data用于存储数据，数据供上面绑定的容器使用，容器之外的其他地方使用不了
+            name:'vue123',
+            age:5,
+            school:{
+                name:'aa'
+            },
+            url:'https://www.baidu.com'
+        }
+    })
+</script>
+<!--准备一个容器让vue工作-->
+
+</body>
+</html>

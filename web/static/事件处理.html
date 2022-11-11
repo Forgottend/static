@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>事件处理</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <button v-on:click="showInfo1">点击触发提示</button>
+    <button v-on:click="showInfo2(66,$event)">点击触发提示</button><!--方法后面加括号里面传参数，这样方法接收时会失去event，因此可以在参数后绑定event一起
+    传过去，让方法接收-->
+</div>
+<script type="text/javascript">
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:"my网页"
+        },
+        methods:{
+            showInfo1(event){
+                alert("同学你好")
+            },
+            showInfo2(number,a){
+                console.log(number)
+                alert("同学你好")
+            }
+        }
+    })
+</script>
+</body>
+</html>

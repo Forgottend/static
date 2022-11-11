@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据代理</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/javascript">
+    let number = 18;
+    let person = {
+        name:'张三',
+        sex:'男',
+        //age:18//可以直接在这里设置，这样的话这个属性值可以被枚举（遍历）
+    }
+    Object.defineProperty(person,'age',{
+        // value:18,
+        // enumerable:true,//开启枚举，默认false
+        // writable:true,//开启可以被修改，默认false
+        // configurable:true//开启可以被删除，默认false
+        get:function (){
+            return number //这样就实现了age属性和number变量的动态绑定，那么为啥不直接将age赋值number呢，因为那样的话初始时赋值结束，再去修改number的值
+            //并不会影响age值，因为age已经赋值过了，而使用这样函数触发的方式去给age赋值，这样的话每次使用age都触发这个函数就可以跟随number改变了
+        },
+        set:function (value){
+            console.log("有人修改age值")
+            number = value
+        }
+    }) //也可以这样设置，这样不可以被枚举
+    console.log(Object.keys(person))//列举出person中的key也就是属性名
+    console.log(person)//打印person对象
+</script>
+</body>
+</html>
